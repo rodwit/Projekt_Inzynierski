@@ -1,0 +1,12 @@
+﻿html, body
+{
+	background-image: url(../Images/background-image-site.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.container 
+{
+    height: 100vh;
+}
