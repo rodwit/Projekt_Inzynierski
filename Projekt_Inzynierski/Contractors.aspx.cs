@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
 
+using MfLibrary;
+using GusLibrary;
+
 namespace Projekt_Inzynierski
 {
 	public partial class Contractors : System.Web.UI.Page
@@ -64,9 +67,65 @@ namespace Projekt_Inzynierski
 
 			BaseConnection.closeConnection();
 
+			if (String.IsNullOrEmpty(LabelNIP.Text))
+				ButtonDetails.Enabled = false;
+			else
+				ButtonDetails.Enabled = true;
 
 			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showInfo();", true);
 
+		}
+
+		protected void ButtonDetails_Click(object sender, EventArgs e)
+		{
+			var mf = MfApiHelper.SearchNip(LabelNIP.Text);
+			var gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
+			if ((mf == null) || (gus == null))
+			{
+				string title = "Błąd";
+				string body = "Nie znaleziono kontrahenta.";
+				ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModalError('" + title + "', '" + body + "');", true);
+				return;
+			}
+
+			// MF
+			LabelMF_AccountNumbers.Text = mf.AccountNumbersAsString.Replace(";", "<br />");
+			LabelMF_KRS.Text = mf.Krs;
+			LabelMF_Name.Text = mf.Name;
+			LabelMF_NIP.Text = mf.Nip;
+			LabelMF_PESEL.Text = mf.Pesel;
+			LabelMF_RegistrationDenialBasis.Text = mf.RegistrationDenialBasis;
+			LabelMF_RegistrationDenialDate.Text = mf.RegistrationDenialDate;
+			LabelMF_RegistrationLegalDate.Text = mf.RegistrationLegalDate;
+			LabelMF_REGON.Text = mf.Regon;
+			LabelMF_RemovalBasis.Text = mf.RemovalBasis;
+			LabelMF_RemovalDate.Text = mf.RemovalDate;
+			LabelMF_ResidenceAddress.Text = mf.ResidenceAddress;
+			LabelMF_RestorationBasis.Text = mf.RestorationBasis;
+			LabelMF_RestorationDate.Text = mf.RestorationDate;
+			LabelMF_StatusVAT.Text = mf.StatusVat;
+			LabelMF_WorkingAddress.Text = mf.WorkingAddress;
+
+			// GUS
+
+			LabelGUS_NIP.Text = gus.Nip;
+			LabelGUS_REGON.Text = gus.Regon;
+			LabelGUS_StatusNIP.Text = gus.StatusNip;
+			LabelGUS_ApartmentNr.Text = gus.NrLokalu;
+			LabelGUS_City.Text = gus.Miejscowosc;
+			LabelGUS_Commune.Text = gus.Gmina;
+			LabelGUS_District.Text = gus.Powiat;
+			LabelGUS_EndDate.Text = gus.DataZakonczeniaDzialalnosci;
+			LabelGUS_HouseNr.Text = gus.NrNieruchomosci;
+			LabelGUS_Name.Text = gus.Nazwa;
+			LabelGUS_PostCity.Text = gus.MiejscowoscPoczty;
+			LabelGUS_PostCode.Text = gus.KodPocztowy;
+			LabelGUS_Province.Text = gus.Wojewodztwo;
+			LabelGUS_Street.Text = gus.Ulica;
+			LabelGUS_Type.Text = gus.Typ;
+
+
+			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showDetails();", true);
 		}
 	}
 }

@@ -96,15 +96,6 @@ namespace Projekt_Inzynierski
 		protected global::System.Web.UI.WebControls.TextBox TextBoxNIP;
 
 		/// <summary>
-		/// TextBoxREGON control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox TextBoxREGON;
-
-		/// <summary>
 		/// TextBoxPESEL control.
 		/// </summary>
 		/// <remarks>
@@ -121,15 +112,6 @@ namespace Projekt_Inzynierski
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button ButtonSave;
-
-		/// <summary>
-		/// LabelTitle control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label LabelTitle;
 
 		/// <summary>
 		/// LabelName control.
@@ -202,6 +184,141 @@ namespace Projekt_Inzynierski
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label LabelPostTown;
+
+		/// <summary>
+		/// LabelGUS_REGON control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_REGON;
+
+		/// <summary>
+		/// LabelGUS_NIP control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_NIP;
+
+		/// <summary>
+		/// LabelGUS_StatusNIP control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_StatusNIP;
+
+		/// <summary>
+		/// LabelGUS_Name control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_Name;
+
+		/// <summary>
+		/// LabelGUS_Province control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_Province;
+
+		/// <summary>
+		/// LabelGUS_District control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_District;
+
+		/// <summary>
+		/// LabelGUS_Commune control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_Commune;
+
+		/// <summary>
+		/// LabelGUS_PostCode control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_PostCode;
+
+		/// <summary>
+		/// LabelGUS_PostCity control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_PostCity;
+
+		/// <summary>
+		/// LabelGUS_City control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_City;
+
+		/// <summary>
+		/// LabelGUS_Street control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_Street;
+
+		/// <summary>
+		/// LabelGUS_HouseNr control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_HouseNr;
+
+		/// <summary>
+		/// LabelGUS_ApartmentNr control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_ApartmentNr;
+
+		/// <summary>
+		/// LabelGUS_Type control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_Type;
+
+		/// <summary>
+		/// LabelGUS_EndDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelGUS_EndDate;
 
 		/// <summary>
 		/// LabelMF_Name control.
@@ -285,15 +402,6 @@ namespace Projekt_Inzynierski
 		protected global::System.Web.UI.WebControls.Label LabelMF_RegistrationLegalDate;
 
 		/// <summary>
-		/// LabelMF_RegistrationDenialBasis control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label LabelMF_RegistrationDenialBasis;
-
-		/// <summary>
 		/// LabelMF_RegistrationDenialDate control.
 		/// </summary>
 		/// <remarks>
@@ -303,31 +411,13 @@ namespace Projekt_Inzynierski
 		protected global::System.Web.UI.WebControls.Label LabelMF_RegistrationDenialDate;
 
 		/// <summary>
-		/// LabelMF_RestorationBasis control.
+		/// LabelMF_RegistrationDenialBasis control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label LabelMF_RestorationBasis;
-
-		/// <summary>
-		/// LabelMF_RestorationDate control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label LabelMF_RestorationDate;
-
-		/// <summary>
-		/// LabelMF_RemovalBasis control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label LabelMF_RemovalBasis;
+		protected global::System.Web.UI.WebControls.Label LabelMF_RegistrationDenialBasis;
 
 		/// <summary>
 		/// LabelMF_RemovalDate control.
@@ -339,6 +429,33 @@ namespace Projekt_Inzynierski
 		protected global::System.Web.UI.WebControls.Label LabelMF_RemovalDate;
 
 		/// <summary>
+		/// LabelMF_RemovalBasis control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelMF_RemovalBasis;
+
+		/// <summary>
+		/// LabelMF_RestorationDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelMF_RestorationDate;
+
+		/// <summary>
+		/// LabelMF_RestorationBasis control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label LabelMF_RestorationBasis;
+
+		/// <summary>
 		/// LabelMF_AccountNumbers control.
 		/// </summary>
 		/// <remarks>
@@ -346,5 +463,14 @@ namespace Projekt_Inzynierski
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label LabelMF_AccountNumbers;
+
+		/// <summary>
+		/// ButtonOK control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlAnchor ButtonOK;
 	}
 }

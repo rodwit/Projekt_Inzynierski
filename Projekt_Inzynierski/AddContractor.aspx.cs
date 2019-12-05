@@ -47,10 +47,7 @@ namespace Projekt_Inzynierski
 				pair.Add("@nip", TextBoxNIP.Text);
 			else
 				pair.Add("@nip", "null");
-			if (!String.IsNullOrEmpty(TextBoxREGON.Text))
-				pair.Add("@regon", TextBoxREGON.Text);
-			else
-				pair.Add("@regon", "null");
+			pair.Add("@regon", "null");
 			if (!String.IsNullOrEmpty(TextBoxPESEL.Text))
 				pair.Add("@pesel", TextBoxPESEL.Text);
 			else
@@ -65,9 +62,9 @@ namespace Projekt_Inzynierski
 
 		protected void ButtonSearch_Click(object sender, EventArgs e)
 		{
-			//Ministerstwo Finansów
 			var mf = MfApiHelper.SearchNip(TextBoxSearchByNIP.Text);
-			if(mf == null)
+			var gus = GusApiHelper.DataSearchSubjects(TextBoxSearchByNIP.Text);
+			if( (mf == null) || (gus == null) )
 			{
 				string title = "Błąd";
 				string body = "Nie znaleziono kontrahenta.";
@@ -75,7 +72,8 @@ namespace Projekt_Inzynierski
 				return;
 			}
 
-			LabelMF_AccountNumbers.Text =  mf.AccountNumbersAsString;
+			// MF
+			LabelMF_AccountNumbers.Text =  mf.AccountNumbersAsString.Replace(";", "<br />");
 			LabelMF_KRS.Text =  mf.Krs;
 			LabelMF_Name.Text =  mf.Name;
 			LabelMF_NIP.Text = mf.Nip;
@@ -92,8 +90,51 @@ namespace Projekt_Inzynierski
 			LabelMF_StatusVAT.Text =  mf.StatusVat;
 			LabelMF_WorkingAddress.Text =  mf.WorkingAddress;
 
+			// GUS
+
+			LabelGUS_NIP.Text = gus.Nip;
+			LabelGUS_REGON.Text = gus.Regon;
+			LabelGUS_StatusNIP.Text = gus.StatusNip;
+			LabelGUS_ApartmentNr.Text = gus.NrLokalu;
+			LabelGUS_City.Text = gus.Miejscowosc;
+			LabelGUS_Commune.Text = gus.Gmina;
+			LabelGUS_District.Text = gus.Powiat;
+			LabelGUS_EndDate.Text = gus.DataZakonczeniaDzialalnosci;
+			LabelGUS_HouseNr.Text = gus.NrNieruchomosci;
+			LabelGUS_Name.Text = gus.Nazwa;
+			LabelGUS_PostCity.Text = gus.MiejscowoscPoczty;
+			LabelGUS_PostCode.Text = gus.KodPocztowy;
+			LabelGUS_Province.Text = gus.Wojewodztwo;
+			LabelGUS_Street.Text = gus.Ulica;
+			LabelGUS_Type.Text = gus.Typ;
+
+
+			LabelName.Text = gus.Nazwa;
+			LabelPESEL.Text = mf.Pesel;
+			LabelCity.Text = gus.Miejscowosc;
+			LabelPostCode.Text = gus.KodPocztowy;
+			LabelNIP.Text = gus.Nip;
+
+			string nr = (String.IsNullOrEmpty(gus.NrNieruchomosci) ? gus.NrLokalu : gus.NrNieruchomosci);
+			LabelStreet.Text = String.IsNullOrEmpty(gus.Ulica) ? nr : (gus.Ulica + " " + nr);
+			LabelPostTown.Text = gus.MiejscowoscPoczty;
+
+
 
 			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showInfo();", true);
+		}
+
+		protected void ButtonOK_ServerClick(object sender, EventArgs e)
+		{
+			TextBoxName.Text = LabelName.Text;
+			TextBoxStreet.Text = LabelStreet.Text;
+			TextBoxCity.Text = LabelCity.Text;
+			TextBoxPostCode.Text = LabelPostCode.Text;
+			TextBoxPostTown.Text = LabelPostTown.Text;
+			TextBoxNIP.Text = LabelNIP.Text;
+			TextBoxPESEL.Text = LabelPESEL.Text;
+
+			ClientScript.RegisterStartupScript(this.GetType(), "Function", "ifSwitchButton();", true);
 		}
 	}
 }

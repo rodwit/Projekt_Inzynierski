@@ -90,7 +90,195 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <div class="col-6"><asp:Button ID="ButtonDetails" runat="server" Text="Szczegóły"  CssClass="btn btn-primary" OnClick="ButtonDetails_Click"/></div>
+                    <div class="col-6"><button type="button" class="btn btn-danger float-right" data-dismiss="modal">Zamknij</button></div>        
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+    <!-- modal info -->
+	<div class="modal fade" id="modalDetails" role="dialog">
+		<div class="modal-dialog mw-100 w-50">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Szczegółowe dane kontrahenta</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+                    <h6>Główny Urząd Statystyczny</h6> <!-- GUS -->
+                    <div class=" row w-100 table-bordered p-4 bg-light">
+                        <div class="col">
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">REGON:</div>
+                                <asp:Label ID="LabelGUS_REGON" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">NIP:</div>
+                                <asp:Label ID="LabelGUS_NIP" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Status NIP:</div>
+                                <asp:Label ID="LabelGUS_StatusNIP" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Nazwa:</div>
+                                <asp:Label ID="LabelGUS_Name" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Województwo:</div>
+                                <asp:Label ID="LabelGUS_Province" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Powiat:</div>
+                                <asp:Label ID="LabelGUS_District" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Gmina:</div>
+                                <asp:Label ID="LabelGUS_Commune" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Kod pocztowy:</div>
+                                <asp:Label ID="LabelGUS_PostCode" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Poczta:</div>
+                                <asp:Label ID="LabelGUS_PostCity" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Miejscowość:</div>
+                                <asp:Label ID="LabelGUS_City" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Ulica:</div>
+                                <asp:Label ID="LabelGUS_Street" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Nr. nieruchomości:</div>
+                                <asp:Label ID="LabelGUS_HouseNr" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Nr. lokalu:</div>
+                                <asp:Label ID="LabelGUS_ApartmentNr" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Typ:</div>
+                                <asp:Label ID="LabelGUS_Type" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-row">
+                                <div class="pl-2 col-4">Data zakończenia działalności:</div>
+                                <asp:Label ID="LabelGUS_EndDate" runat="server" Text="Label"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <h6>Ministerstwo Finansów</h6> <!-- Ministerstwo finansów -->
+					<div class=" row w-100 table-bordered p-4 bg-light">
+                        <div class="col">
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Firma (nazwa) lub imię i nazwisko:</div>
+								<asp:Label ID="LabelMF_Name" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">NIP:</div>
+								<asp:Label ID="LabelMF_NIP" runat="server" ></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Status VAT:</div>
+								<asp:Label ID="LabelMF_StatusVAT" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">REGON:</div>
+								<asp:Label ID="LabelMF_REGON" runat="server" Text="Label"></asp:Label>
+							</div>
+                            <hr />
+                            <div class="d-flex flex-row">
+								<div class="pl-2 col-4">PESEL:</div>
+								<asp:Label ID="LabelMF_PESEL" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">KRS:</div>
+								<asp:Label ID="LabelMF_KRS" runat="server" ></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Adres stałego miejsca prowadzenia działalności albo adres miejsca zamieszkania:</div>
+								<asp:Label ID="LabelMF_ResidenceAddress" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Adres siedziby:</div>
+								<asp:Label ID="LabelMF_WorkingAddress" runat="server" Text="Label"></asp:Label>
+							</div>
+                            <hr />
+                            <div class="d-flex flex-row">
+								<div class="pl-2 col-4">Data rejestracji jako podatnika VAT:</div>
+								<asp:Label ID="LabelMF_RegistrationLegalDate" runat="server" Text="Label"></asp:Label>
+							</div>
+                            <hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Data odmowy rejestracji jako podatnika VAT:</div>
+								<asp:Label ID="LabelMF_RegistrationDenialDate" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Podstawa prawna odmowy rejestracji:</div>
+								<asp:Label ID="LabelMF_RegistrationDenialBasis" runat="server" ></asp:Label>
+							</div>
+                            <hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Data wykreślenia rejestracji jako podatnika VAT:</div>
+								<asp:Label ID="LabelMF_RemovalDate" runat="server" Text="Label"></asp:Label>
+							</div>
+                            <hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Podstawa prawna wykreślenia:</div>
+								<asp:Label ID="LabelMF_RemovalBasis" runat="server" ></asp:Label>
+							</div>
+                            <hr />
+                            <div class="d-flex flex-row">
+								<div class="pl-2 col-4">Data przywrócenia rejestracji jako podatnika VAT:</div>
+								<asp:Label ID="LabelMF_RestorationDate" runat="server" Text="Label"></asp:Label>
+							</div>
+                            <hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Podstawa prawna przywrócenia:</div>
+								<asp:Label ID="LabelMF_RestorationBasis" runat="server" Text="Label"></asp:Label>
+							</div>
+							<hr />
+							<div class="d-flex flex-row">
+								<div class="pl-2 col-4">Numery rachunków rozliczeniowych lub imiennych rachunków w SKOK:</div>
+								<asp:Label ID="LabelMF_AccountNumbers" runat="server" Text="Label"></asp:Label>
+							</div>
+						</div>
+
+                    </div>
+				</div>
+                
+				<div class="modal-footer">
+                    <div class="p-2"><button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button></div>
 				</div>
 			</div>
 
@@ -101,7 +289,12 @@
 		function showInfo()
 		{
 			$('#modalInfo').modal('show');
-		}
+        };
+
+        function showDetails()
+        {
+            $('#modalDetails').modal('show');
+        };
 	</script>
 
 </asp:Content>
