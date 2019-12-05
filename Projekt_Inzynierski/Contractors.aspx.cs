@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-
-
 using MfLibrary;
 using GusLibrary;
+using DataLayerLibrary;
 
 namespace Projekt_Inzynierski
 {
-	public partial class Contractors : System.Web.UI.Page
+    public partial class Contractors : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
-
-		}
-
+        private Context db = new Context();
+        protected void Page_Load(object sender, EventArgs e){}
 		protected void GridViewContractors_RowCommand(object sender, GridViewCommandEventArgs e)
 		{
 			if (e.CommandName == "DeleteContractor")
@@ -26,21 +18,16 @@ namespace Projekt_Inzynierski
 			else if (e.CommandName == "EditContractor")
 				editContractor(Convert.ToInt32(e.CommandArgument));
 		}
-
 		private void deleteContractor(int index)
 		{
 			if (!BaseConnection.openConnection())
 				return;
-
-			string query = "delete from Contractors where id=" + GridViewContractors.DataKeys[GridViewContractors.SelectedIndex].Value.ToString();
-
+			string query = 
+                "delete from Contractors where id=" + GridViewContractors.DataKeys[index].Value.ToString();
 			BaseConnection.execCommand(query);
-
 			BaseConnection.closeConnection();
-
 			Response.Redirect(Request.RawUrl);
 		}
-
 		private void editContractor(int index)
 		{
 			Response.Redirect("EditContractor.aspx?id=" + GridViewContractors.DataKeys[index].Value);
@@ -49,10 +36,10 @@ namespace Projekt_Inzynierski
 		{
 			if (!BaseConnection.openConnection())
 				return;
-
-			string query = "select Name,Post_town,Post_code, City, Street, NIP, REGON, PESEL from Contractors where Id = " + GridViewContractors.DataKeys[GridViewContractors.SelectedIndex].Value;
-			SqlDataReader reader = BaseConnection.execReader(query);
-			while(reader.Read())
+			var query = 
+                "select Name,Post_town,Post_code, City, Street, NIP, REGON, PESEL from Contractors where Id = " + GridViewContractors.DataKeys[GridViewContractors.SelectedIndex].Value;
+			var reader = BaseConnection.execReader(query);
+			while (reader.Read())
 			{
 				LabelName.Text = LabelTitle.Text= reader.GetString(0);
 				LabelPostTown.Text = reader.GetString(1);
@@ -64,23 +51,32 @@ namespace Projekt_Inzynierski
 				if (!reader.IsDBNull(6))
 					LabelREGON.Text = reader.GetString(6);
 			}
-
 			BaseConnection.closeConnection();
-
-			if (String.IsNullOrEmpty(LabelNIP.Text))
+			if (string.IsNullOrEmpty(LabelNIP.Text))
 				ButtonDetails.Enabled = false;
 			else
 				ButtonDetails.Enabled = true;
-
-			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showInfo();", true);
+			ClientScript.RegisterStartupScript(GetType(), "Popup", "showInfo();", true);
 
 		}
 
 		protected void ButtonDetails_Click(object sender, EventArgs e)
 		{
-			var mf = MfApiHelper.SearchNip(LabelNIP.Text);
-			var gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
-			if ((mf == null) || (gus == null))
+            var gus = db.GusDomain.FirstOrDefault(o => o.Nip == LabelNIP.Text && o.AddedDate == DateTime.Today);
+            if (gus == null)
+            {
+                gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
+                db.GusDomain.Add(gus);
+                db.SaveChanges();
+            }
+            var mf = db.MfDomain.FirstOrDefault(o => o.Nip == LabelNIP.Text && o.AddedDate == DateTime.Today);
+            if (mf == null)
+            {
+                mf = MfApiHelper.SearchNip(LabelNIP.Text);
+                db.MfDomain.Add(mf);
+                db.SaveChanges();
+            }
+            if ((mf == null) || (gus == null))
 			{
 				string title = "Błąd";
 				string body = "Nie znaleziono kontrahenta.";
@@ -124,8 +120,7 @@ namespace Projekt_Inzynierski
 			LabelGUS_Street.Text = gus.Ulica;
 			LabelGUS_Type.Text = gus.Typ;
 
-
-			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showDetails();", true);
+			ClientScript.RegisterStartupScript(GetType(), "Popup", "showDetails();", true);
 		}
 	}
 }

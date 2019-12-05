@@ -45,7 +45,7 @@ namespace Projekt_Inzynierski
 				cmd.Parameters.Add(new SqlParameter(parametr.Key, parametr.Value));
 			}
 			var result = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
-			result.Direction = System.Data.ParameterDirection.ReturnValue;
+			result.Direction = ParameterDirection.ReturnValue;
 			if (outParametr != null)
 			{
 				outParametr.Direction = ParameterDirection.Output;

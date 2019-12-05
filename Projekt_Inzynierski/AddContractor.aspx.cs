@@ -13,7 +13,8 @@ namespace Projekt_Inzynierski
 {
 	public partial class AddContractor : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
+        private Context db = new Context();
+        protected void Page_Load(object sender, EventArgs e)
 		{
 
 		}
@@ -62,13 +63,29 @@ namespace Projekt_Inzynierski
 
 		protected void ButtonSearch_Click(object sender, EventArgs e)
 		{
-			var mf = MfApiHelper.SearchNip(TextBoxSearchByNIP.Text);
-			var gus = GusApiHelper.DataSearchSubjects(TextBoxSearchByNIP.Text);
+            var gus = db.GusDomain.FirstOrDefault(o => o.Nip == TextBoxSearchByNIP.Text && o.AddedDate == DateTime.Today);
+            if (gus == null)
+            {
+                gus = GusApiHelper.DataSearchSubjects(TextBoxSearchByNIP.Text);
+                db.GusDomain.Add(gus);
+                db.SaveChanges();
+            }
+            var mf = db.MfDomain.FirstOrDefault(o => o.Nip == TextBoxSearchByNIP.Text && o.AddedDate == DateTime.Today);
+            if (mf == null)
+            {
+                mf = MfApiHelper.SearchNip(TextBoxSearchByNIP.Text);
+                db.MfDomain.Add(mf);
+                db.SaveChanges();
+            }	
 			if( (mf == null) || (gus == null) )
 			{
 				string title = "Błąd";
 				string body = "Nie znaleziono kontrahenta.";
-				ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModalError('" + title + "', '" + body + "');", true);
+				ClientScript.RegisterStartupScript(
+                    GetType(), 
+                    "Popup", "showModalError('" + title + "', '" + body + "');", 
+                    true
+                );
 				return;
 			}
 
