@@ -36,7 +36,7 @@ namespace GusLibrary
         public static GusDataDto DataSearchSubjects(string nip)
         {
             var sid = Login();
-            var scope = new OperationContextScope(Client.InnerChannel);
+            _ = new OperationContextScope(Client.InnerChannel);
             var reqProps = new HttpRequestMessageProperty();
             reqProps.Headers.Add("sid", sid);
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = reqProps;
