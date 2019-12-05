@@ -63,6 +63,8 @@ namespace Projekt_Inzynierski
 
 		protected void ButtonSearch_Click(object sender, EventArgs e)
 		{
+			if (String.IsNullOrEmpty(TextBoxSearchByNIP.Text))
+				return;
             var gus = db.GusDomain.FirstOrDefault(o => o.Nip == TextBoxSearchByNIP.Text && o.AddedDate == DateTime.Today);
             if (gus == null)
             {

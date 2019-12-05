@@ -109,9 +109,31 @@
 					<h4>Szczegółowe dane kontrahenta</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">
+                <!-- Historia -->
+				<div class="modal-body">                    
+                    <asp:DropDownList 
+                        OnSelectedIndexChanged="HistoryDropDownList_SelectedIndexChanged"
+                        AutoPostBack="True"
+                        ID="HistoryDropDownList" 
+                        runat="server" 
+                        DataSourceID="SelectHistory" 
+                        DataTextField="AddedDate" 
+                        DataValueField="Id"
+                        CssClass="selectpicker float-right ml-2" 
+                        DataTextFormatString="{0:yyyy-MM-dd}" />
+                    <asp:Label 
+                        ID="HistoryLabel" 
+                        runat="server" 
+                        Text="Historia wpisów:" 
+                        CssClass="float-right" />
+                    <asp:Button 
+                        ID="ActalizeButton" 
+                        runat="server"
+                        CssClass="btn btn-primary mb-2"
+                        Text="Aktualizuj"
+                        OnClick="ActalizeButton_Click" />
                     <h6>Główny Urząd Statystyczny</h6> <!-- GUS -->
-                    <div class=" row w-100 table-bordered p-4 bg-light">
+                    <div class="row w-100 table-bordered p-4 bg-light">
                         <div class="col">
                             <div class="d-flex flex-row">
                                 <div class="pl-2 col-4">REGON:</div>
@@ -275,16 +297,27 @@
 						</div>
 
                     </div>
-				</div>
-                
+				</div>                
 				<div class="modal-footer">
-                    <div class="p-2"><button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button></div>
+                    <div class="p-2">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger" 
+
+                            data-dismiss="modal">Zamknij</button>
+                    </div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
+    <asp:SqlDataSource 
+        ID="SelectHistory" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ConnectionStringLocalDb %>" 
+        SelectCommand="SELECT [Id], Convert(date, [AddedDate]) AS AddedDate FROM [GusDataDtoes] WHERE ([Nip] = @Nip)">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="LabelNIP" Name="Nip" PropertyName="Text" Type="String" />
+        </SelectParameters>
+      </asp:SqlDataSource>
 	<script type="text/javascript">
 		function showInfo()
 		{
@@ -296,5 +329,4 @@
             $('#modalDetails').modal('show');
         };
 	</script>
-
 </asp:Content>

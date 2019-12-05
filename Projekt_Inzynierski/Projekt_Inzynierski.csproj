@@ -109,6 +109,7 @@
     <Content Include="LogOut.aspx" />
     <Content Include="NoPermission.aspx" />
     <Content Include="Product.aspx" />
+    <Content Include="ScriptDatabase\CreateScript.sql" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -274,7 +275,6 @@
     <Content Include="Scripts\Validate\PESEL.js" />
     <Content Include="Scripts\Validate\PostCode.js" />
     <Content Include="Scripts\VAT\vat.js" />
-    <Content Include="SkryptBaza\scriptBaza.sql" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />

@@ -18,8 +18,7 @@ namespace Projekt_Inzynierski
 		private string _payment;
 		private HtmlTextWriter _writer;
 		private StringWriter _stringWriter;
-
-
+        
 		private struct ProductRow
 		{
 			public string name;
@@ -289,7 +288,7 @@ namespace Projekt_Inzynierski
 					_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 					_writer.RenderBeginTag(HtmlTextWriterTag.Div); // name
 					_writer.Write(name);
-					_writer.RenderEndTag();
+                    _writer.RenderEndTag();                    
 
 					_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 					_writer.RenderBeginTag(HtmlTextWriterTag.Div); // address

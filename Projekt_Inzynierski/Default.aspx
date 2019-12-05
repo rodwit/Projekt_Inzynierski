@@ -80,7 +80,6 @@
 			{ %>
 		    <h3>System do uproszczonego zarządzania zasobami przedsiębiorstwa</h3>
             <br />
-            <asp:Label ID="LabelTest" runat="server" Text="Label"></asp:Label>
 		<%} %>
 	</div>
 </asp:Content>

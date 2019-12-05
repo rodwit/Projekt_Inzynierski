@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-
+using DataLayerLibrary;
+using GusLibrary;
+using MfLibrary;
 
 namespace Projekt_Inzynierski
 {
-	public partial class EditContractor : System.Web.UI.Page
+    public partial class EditContractor : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
+        private Context db = new Context();
+        protected void Page_Load(object sender, EventArgs e)
 		{
 			string id = Request.QueryString["id"];
-
-			if (String.IsNullOrEmpty(id))
+			if (string.IsNullOrEmpty(id))
 				Response.Redirect("Default.aspx");
 
 			if (IsPostBack)
@@ -64,15 +63,15 @@ namespace Projekt_Inzynierski
 			pair.Add("@postCode", TextBoxPostCode.Text);
 			pair.Add("@city", TextBoxCity.Text);
 			pair.Add("@street", TextBoxStreet.Text);
-			if (!String.IsNullOrEmpty(TextBoxNIP.Text))
+			if (!string.IsNullOrEmpty(TextBoxNIP.Text))
 				pair.Add("@nip", TextBoxNIP.Text);
 			else
 				pair.Add("@nip", "null");
-			if (!String.IsNullOrEmpty(TextBoxREGON.Text))
+			if (!string.IsNullOrEmpty(TextBoxREGON.Text))
 				pair.Add("@regon", TextBoxREGON.Text);
 			else
 				pair.Add("@regon", "null");
-			if (!String.IsNullOrEmpty(TextBoxPESEL.Text))
+			if (!string.IsNullOrEmpty(TextBoxPESEL.Text))
 				pair.Add("@pesel", TextBoxPESEL.Text);
 			else
 				pair.Add("@pesel", "null");
@@ -82,6 +81,56 @@ namespace Projekt_Inzynierski
 			BaseConnection.closeConnection();
 
 			Response.Redirect("Contractors.aspx");
+		}
+
+
+		protected void ButtonUpdate_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(TextBoxNIP.Text))
+				return;
+			var gus = db.GusDomain.FirstOrDefault(o => o.Nip == TextBoxNIP.Text && o.AddedDate == DateTime.Today);
+			if (gus == null)
+			{
+				gus = GusApiHelper.DataSearchSubjects(TextBoxNIP.Text);
+				db.GusDomain.Add(gus);
+				db.SaveChanges();
+			}
+			var mf = db.MfDomain.FirstOrDefault(o => o.Nip == TextBoxNIP.Text && o.AddedDate == DateTime.Today);
+			if (mf == null)
+			{
+				mf = MfApiHelper.SearchNip(TextBoxNIP.Text);
+				db.MfDomain.Add(mf);
+				db.SaveChanges();
+			}
+			if ((mf == null) || (gus == null))
+			{
+				string title = "Błąd";
+				string body = "Nie znaleziono kontrahenta.";
+				ClientScript.RegisterStartupScript(
+					GetType(),
+					"Popup", "showModalError('" + title + "', '" + body + "');",
+					true
+				);
+				return;
+			}
+
+			TextBoxName.Text = gus.Nazwa;
+			TextBoxPESEL.Text = mf.Pesel;
+			TextBoxCity.Text = gus.Miejscowosc;
+			TextBoxPostCode.Text = gus.KodPocztowy;
+			TextBoxNIP.Text = gus.Nip;
+
+			string nr = (string.IsNullOrEmpty(gus.NrNieruchomosci) ? gus.NrLokalu : gus.NrNieruchomosci);
+			TextBoxStreet.Text = string.IsNullOrEmpty(gus.Ulica) ? nr : (gus.Ulica + " " + nr);
+			TextBoxPostTown.Text = gus.MiejscowoscPoczty;
+
+			TextBoxName.Text = TextBoxName.Text;
+			TextBoxStreet.Text = TextBoxStreet.Text;
+			TextBoxCity.Text = TextBoxCity.Text;
+			TextBoxPostCode.Text = TextBoxPostCode.Text;
+			TextBoxPostTown.Text = TextBoxPostTown.Text;
+			TextBoxNIP.Text = TextBoxNIP.Text;
+			TextBoxPESEL.Text = TextBoxPESEL.Text;
 		}
 	}
 }

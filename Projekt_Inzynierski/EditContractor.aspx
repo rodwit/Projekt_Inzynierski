@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Index.Master" AutoEventWireup="true" CodeBehind="EditContractor.aspx.cs" Inherits="Projekt_Inzynierski.EditContractor" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="Scripts/Validate/NIP.js"></script>
     <script src="Scripts/Validate/PostCode.js"></script>
@@ -6,6 +7,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	<div class="col h-100">
+        <div class="row">
+            <asp:Button 
+                ID="ButtonUpdate" 
+                CssClass="btn btn-primary p-2" 
+                runat="server" 
+                Text="Aktualizuj z bazy danych" 
+                OnClick="ButtonUpdate_Click" />
+        </div>
+        <br/>
 		<div class="d-flex flex-row">
 			<h3>Dane</h3>
 		</div>

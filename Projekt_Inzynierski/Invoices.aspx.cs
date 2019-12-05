@@ -19,10 +19,32 @@ namespace Projekt_Inzynierski
 
 		protected string SetInvoiceNumber(object issueDate, object number)
 		{
-			DateTime dateTime = DateTime.ParseExact(issueDate.ToString(), "yyyy-MM-dd HH:mm:ss", null);
-			//DateTime dateTime = DateTime.ParseExact(issueDate.ToString(), "MM/dd/yyyy hh:mm:ss tt", null);
-			int num = (int)number;
+            DateTime dateTime = DateTime.Today;
+            try
+            {
+                dateTime = DateTime.ParseExact(issueDate.ToString(), "dd.MM.yyyy HH:mm:ss", null);
+            }
+            catch (Exception)
+            {
 
+            }
+            try
+            {
+                dateTime = DateTime.ParseExact(issueDate.ToString(), "yyyy-MM-dd HH:mm:ss", null);
+            }
+            catch (Exception)
+            {
+                
+            }
+            try
+            {
+                dateTime = DateTime.ParseExact(issueDate.ToString(), "MM/dd/yyyy hh:mm:ss tt", null);
+            }
+            catch (Exception)
+            {
+
+            }            
+            int num = (int)number;
 			string result = num.ToString("00") + "/" + dateTime.Month.ToString("00") + "/" + dateTime.Year.ToString();
 
 			//string result = issueDate.ToString();

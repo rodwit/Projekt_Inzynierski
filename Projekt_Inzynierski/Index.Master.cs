@@ -19,6 +19,7 @@ namespace Projekt_Inzynierski
 			{ "/LogOut.aspx","Wylogowywanie..." },
 			{ "/Product.aspx","Produkty" },
 			{ "/AddContractor.aspx","Dodaj kontrahenta" },
+			{ "/EditContractor.aspx","Edytuj kontrahenta" },
 			{ "/Contractors.aspx","Kontrahenci" },
 			{ "/NoPermission.aspx","Brak uprawnień" }
 		};
