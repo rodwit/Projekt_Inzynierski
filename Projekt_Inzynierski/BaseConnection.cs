@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace Projekt_Inzynierski
 {
-	public static class BaseConnection
+    public static class BaseConnection
 	{
 		private static SqlConnectionStringBuilder connectionString;
         private static readonly SqlConnection connection;
@@ -48,7 +46,6 @@ namespace Projekt_Inzynierski
 			}
 			var result = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
 			result.Direction = System.Data.ParameterDirection.ReturnValue;
-
 			if (outParametr != null)
 			{
 				outParametr.Direction = ParameterDirection.Output;
@@ -57,13 +54,11 @@ namespace Projekt_Inzynierski
 			cmd.ExecuteNonQuery();
 			return result;
 		}
-
 		public static int execCommand(string command)
 		{
 			var cmd = new SqlCommand(command, connection);
 			return cmd.ExecuteNonQuery();
 		}
-
 		public static object execScalar(string command)
 		{
 			var cmd = new SqlCommand(command, connection);
@@ -91,7 +86,6 @@ namespace Projekt_Inzynierski
 			}
 			return ifOK;
 		}
-
 		public static void closeConnection()
 		{
 			connection.Close();
