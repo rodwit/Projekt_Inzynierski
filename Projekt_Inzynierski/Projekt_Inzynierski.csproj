@@ -267,6 +267,7 @@
     <Content Include="Scripts\Validate\PESEL.js" />
     <Content Include="Scripts\Validate\PostCode.js" />
     <Content Include="Scripts\VAT\vat.js" />
+    <Content Include="SkryptBaza\scriptBaza.sql" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
