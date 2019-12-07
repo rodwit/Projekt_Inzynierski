@@ -256,8 +256,8 @@ namespace Projekt_Inzynierski
 			data.Add("@userId", Session["User"].ToString());
 			data.Add("@contractorId", contractor);
 			data.Add("@recieverId", "-1");
-			data.Add("@issueDate", issueDate.ToShortDateString());
-			data.Add("@dueDate", dueDate.ToShortDateString());
+			data.Add("@issueDate", issueDate.ToString("yyyy-MM-dd"));
+			data.Add("@dueDate", dueDate.ToString("yyyy-MM-dd"));
 			data.Add("@paymentId", payment);
 
 			SqlParameter idInvoice = new SqlParameter("@result", System.Data.SqlDbType.Int);

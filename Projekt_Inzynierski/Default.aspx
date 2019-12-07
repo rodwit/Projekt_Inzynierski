@@ -20,7 +20,7 @@
 					</div>
 				</fieldset>
 				<fieldset class="row">
-					<legend>Miasto</legend>
+					<legend>Miejscowość</legend>
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<asp:Label ID="LabelCity" runat="server"></asp:Label>

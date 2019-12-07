@@ -30,7 +30,7 @@
 		</div>
 		<br />
 		<div class="d-flex flex-row">
-			<div class="p-2 col-2">Miasto</div>
+			<div class="p-2 col-2">Miejscowość</div>
 			<asp:TextBox ID="TextBoxCity" runat="server" required="required"></asp:TextBox>
 		</div>
 		<br />
@@ -85,7 +85,7 @@
 							</div>
 							<hr />
 							<div class="d-flex flex-row">
-								<div class="pl-2 col-4">Miasto:</div>
+								<div class="pl-2 col-4">Miejscowość:</div>
 								<asp:Label ID="LabelCity" runat="server" Text="Label"></asp:Label>
 							</div>
 							<hr />

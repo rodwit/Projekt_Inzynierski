@@ -57,7 +57,7 @@
 							</div>
 							<hr />
 							<div class="d-flex flex-row">
-								<div class="pl-2 col-4">Miasto:</div>
+								<div class="pl-2 col-4">Miejscowość:</div>
 								<asp:Label ID="LabelCity" runat="server" Text="Label"></asp:Label>
 							</div>
 							<hr />
@@ -313,7 +313,7 @@
     <asp:SqlDataSource 
         ID="SelectHistory" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ConnectionStringLocalDb %>" 
-        SelectCommand="SELECT [Id], Convert(date, [AddedDate]) AS AddedDate FROM [GusDataDtoes] WHERE ([Nip] = @Nip)">
+        SelectCommand="SELECT [Id], Convert(date, [AddedDate]) AS AddedDate FROM [GusDataDtoes] WHERE ([Nip] = @Nip) ORDER BY [AddedDate] DESC">
         <SelectParameters>
             <asp:ControlParameter ControlID="LabelNIP" Name="Nip" PropertyName="Text" Type="String" />
         </SelectParameters>

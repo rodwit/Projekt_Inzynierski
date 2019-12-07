@@ -62,12 +62,6 @@
 				<label>Data płatności</label></div>
 			<asp:TextBox ID="TextBoxDueDate" runat="server"></asp:TextBox>
 		</div>
-		<div class="d-flex flex-row align-items-center">
-			<div class="p-2">
-				<label>Zapłacono </label>
-			</div>
-			<asp:CheckBox ID="CheckBoxPaid" CssClass="custom-checkbox" runat="server" />
-		</div>
 
 		<h2>Produkty</h2>
 		<hr />

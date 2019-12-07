@@ -43,7 +43,7 @@
 
     <!-- modal info -->
     <div class="modal fade" id="modalInfo" role="dialog">
-        <div class="modal-dialog mw-100 w-50">
+        <div class="modal-dialog mw-100 w-75">
 
             <!-- Modal content-->
             <div class="modal-content">

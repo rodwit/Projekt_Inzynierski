@@ -68,16 +68,42 @@ namespace Projekt_Inzynierski
             var gus = db.GusDomain.FirstOrDefault(o => o.Nip == TextBoxSearchByNIP.Text && o.AddedDate == DateTime.Today);
             if (gus == null)
             {
-                gus = GusApiHelper.DataSearchSubjects(TextBoxSearchByNIP.Text);
-                db.GusDomain.Add(gus);
-                db.SaveChanges();
+                try
+                {
+                    gus = GusApiHelper.DataSearchSubjects(TextBoxSearchByNIP.Text);
+                    if (!String.IsNullOrEmpty(gus.Nazwa))
+                    {
+                        db.GusDomain.Add(gus);
+                        db.SaveChanges();
+                    }
+                    else
+                        gus = null;
+                }
+                catch(Exception)
+                {
+                    gus = null;
+                }
+                
             }
             var mf = db.MfDomain.FirstOrDefault(o => o.Nip == TextBoxSearchByNIP.Text && o.AddedDate == DateTime.Today);
             if (mf == null)
             {
-                mf = MfApiHelper.SearchNip(TextBoxSearchByNIP.Text);
-                db.MfDomain.Add(mf);
-                db.SaveChanges();
+                
+                try
+                {
+                    mf = MfApiHelper.SearchNip(TextBoxSearchByNIP.Text);
+                    if(mf != null)
+                    {
+                        db.MfDomain.Add(mf);
+                        db.SaveChanges();
+                    }
+                    
+                }
+                catch(Exception)
+                {
+                    mf = null;
+                }
+                
             }	
 			if( (mf == null) || (gus == null) )
 			{

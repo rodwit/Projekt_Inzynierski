@@ -54,30 +54,30 @@ namespace Projekt_Inzynierski
 					LabelREGON.Text = reader.GetString(6);
 			}
 			BaseConnection.closeConnection();
-			if (string.IsNullOrEmpty(LabelNIP.Text))
-				ButtonDetails.Enabled = false;
-			else
-				ButtonDetails.Enabled = true;
 
+            if (!string.IsNullOrEmpty(LabelNIP.Text))
+            {
+                var gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
+                var mf = MfApiHelper.SearchNip(LabelNIP.Text);
+                if (gus == null || mf == null)
+                    ButtonDetails.Enabled = false;
+                else
+                    ButtonDetails.Enabled = true;
+            }
+            else
+                ButtonDetails.Enabled = false;
+
+            
+
+            
             ClientScript.RegisterStartupScript(GetType(), "Popup", "showInfo();", true);
 		}
 
 		protected void ButtonDetails_Click(object sender, EventArgs e)
 		{
-            var gus = db.GusDomain.FirstOrDefault(o => o.Nip == LabelNIP.Text && o.AddedDate == DateTime.Today);
-            if (gus == null)
-            {
-                gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
-                db.GusDomain.Add(gus);
-                db.SaveChanges();
-            }
-            var mf = db.MfDomain.FirstOrDefault(o => o.Nip == LabelNIP.Text && o.AddedDate == DateTime.Today);
-            if (mf == null)
-            {
-                mf = MfApiHelper.SearchNip(LabelNIP.Text);
-                db.MfDomain.Add(mf);
-                db.SaveChanges();
-            }
+            var gus = GusApiHelper.DataSearchSubjects(LabelNIP.Text);
+            var mf = MfApiHelper.SearchNip(LabelNIP.Text);
+            
             if ((mf == null) || (gus == null))
 			{
 				string title = "Błąd";
@@ -219,6 +219,8 @@ namespace Projekt_Inzynierski
             LabelGUS_Province.Text = gus.Wojewodztwo;
             LabelGUS_Street.Text = gus.Ulica;
             LabelGUS_Type.Text = gus.Typ;
+
+            HistoryDropDownList.DataBind();
 
             ClientScript.RegisterStartupScript(GetType(), "Popup", "showDetails();", true);
         }
