@@ -11,13 +11,13 @@ namespace Projekt_Inzynierski
 {
 	public class GenerateInvoice
 	{
-		private int _idInvoice;
-		private int _idContractor;
-		private int _idUser;
-		private string _nr;
-		private string _payment;
-		private HtmlTextWriter _writer;
-		private StringWriter _stringWriter;
+		public int _idInvoice;
+		public int _idContractor;
+		public int _idUser;
+		public string _nr;
+		public string _payment;
+		public HtmlTextWriter _writer;
+		public StringWriter _stringWriter;
         
 		private struct ProductRow
 		{
@@ -47,7 +47,7 @@ namespace Projekt_Inzynierski
 			BaseConnection.closeConnection();
 
 		}
-		private void header()
+		public void header()
 		{
 			_writer.AddAttribute(HtmlTextWriterAttribute.Href, "https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css");
 			_writer.AddAttribute(HtmlTextWriterAttribute.Rel, "stylesheet");
@@ -89,7 +89,7 @@ namespace Projekt_Inzynierski
 					_writer.AddAttribute(HtmlTextWriterAttribute.Style, "width: 50%; height: 90%");
 					//_writer.AddAttribute(HtmlTextWriterAttribute.Class, "p-2");
 					//_writer.AddAttribute(HtmlTextWriterAttribute.Src, "file:\\" + HttpContext.Current.Server.MapPath( "Images/Logo.jpg"));
-					_writer.AddAttribute(HtmlTextWriterAttribute.Src, IronPdf.Util.ImageToDataUri(System.Drawing.Image.FromFile(HttpContext.Current.Server.MapPath("Images/Logo.jpg"))));
+					//_writer.AddAttribute(HtmlTextWriterAttribute.Src, IronPdf.Util.ImageToDataUri(System.Drawing.Image.FromFile(HttpContext.Current.Server.MapPath("Images/Logo.jpg"))));
 					_writer.RenderBeginTag(HtmlTextWriterTag.Img); // img logo
 					_writer.RenderEndTag();
 				}
@@ -174,7 +174,7 @@ namespace Projekt_Inzynierski
 			_writer.RenderEndTag();
 		}
 
-		private void persons()
+		public void persons()
 		{
 			if (!BaseConnection.openConnection())
 				return;
@@ -192,7 +192,7 @@ namespace Projekt_Inzynierski
 				postCode = reader.GetString(3);
 				city = reader.GetString(4);
 				street = reader.GetString(5);
-				if(!reader.IsDBNull(6))
+				if (!reader.IsDBNull(6))
 					nip = reader.GetString(6);
 				if (!reader.IsDBNull(7))
 					regon = reader.GetString(7);
@@ -233,15 +233,15 @@ namespace Projekt_Inzynierski
 					_writer.Write(postCode + " " + postTown);
 					_writer.RenderEndTag();
 
-					if(nip != "")
+					if (nip != "")
 					{
 						_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 						_writer.RenderBeginTag(HtmlTextWriterTag.Div); // nip
-						_writer.Write("NIP: "+nip);
+						_writer.Write("NIP: " + nip);
 						_writer.RenderEndTag();
 					}
 
-					if ( (_payment=="Przelew") && (bank != "") && (bankAccount!=""))
+					if ((_payment == "Przelew") && (bank != "") && (bankAccount != ""))
 					{
 						_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 						_writer.RenderBeginTag(HtmlTextWriterTag.Div); // bank
@@ -288,7 +288,7 @@ namespace Projekt_Inzynierski
 					_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 					_writer.RenderBeginTag(HtmlTextWriterTag.Div); // name
 					_writer.Write(name);
-                    _writer.RenderEndTag();                    
+					_writer.RenderEndTag();
 
 					_writer.AddAttribute(HtmlTextWriterAttribute.Class, "mt-2");
 					_writer.RenderBeginTag(HtmlTextWriterTag.Div); // address
@@ -328,7 +328,7 @@ namespace Projekt_Inzynierski
 
 		}
 
-		private void products()
+		public void products()
 		{
 			if (!BaseConnection.openConnection())
 				return;

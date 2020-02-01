@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GusLibrary", "GusLibrary\Gu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfLibrary", "MfLibrary\MfLibrary.csproj", "{85FE865C-F946-4835-A394-AC957C813BD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTestsProject", "FunctionalTestsProject\FunctionalTestsProject.csproj", "{8FF15607-BD50-4C5F-9B30-A7E552C069EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projekt_InzynierskiTests", "Projekt_InzynierskiTests\Projekt_InzynierskiTests.csproj", "{8FF15607-BD50-4C5F-9B30-A7E552C069EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

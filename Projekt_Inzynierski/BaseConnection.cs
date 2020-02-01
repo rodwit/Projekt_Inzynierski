@@ -7,8 +7,8 @@ namespace Projekt_Inzynierski
 {
     public static class BaseConnection
 	{
-		private static SqlConnectionStringBuilder connectionString;
-        private static readonly SqlConnection connection;
+		public static SqlConnectionStringBuilder connectionString;
+        public static readonly SqlConnection connection;
 		static BaseConnection()
 		{
             connectionString = new SqlConnectionStringBuilder

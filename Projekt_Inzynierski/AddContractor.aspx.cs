@@ -13,13 +13,13 @@ namespace Projekt_Inzynierski
 {
 	public partial class AddContractor : System.Web.UI.Page
 	{
-        private Context db = new Context();
-        protected void Page_Load(object sender, EventArgs e)
+		public Context db = new Context();
+        public void Page_Load(object sender, EventArgs e)
 		{
 
 		}
 
-		protected void ButtonSave_Click(object sender, EventArgs e)
+		public void ButtonSave_Click(object sender, EventArgs e)
 		{
 			if (!BaseConnection.openConnection())
 				return;
@@ -61,7 +61,7 @@ namespace Projekt_Inzynierski
 			Response.Redirect("Contractors.aspx");
 		}
 
-		protected void ButtonSearch_Click(object sender, EventArgs e)
+		public void ButtonSearch_Click(object sender, EventArgs e)
 		{
 			if (String.IsNullOrEmpty(TextBoxSearchByNIP.Text))
 				return;
@@ -169,7 +169,7 @@ namespace Projekt_Inzynierski
 			ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showInfo();", true);
 		}
 
-		protected void ButtonOK_ServerClick(object sender, EventArgs e)
+		public void ButtonOK_ServerClick(object sender, EventArgs e)
 		{
 			TextBoxName.Text = LabelName.Text;
 			TextBoxStreet.Text = LabelStreet.Text;
