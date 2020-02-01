@@ -60,9 +60,22 @@
     <Compile Include="UnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DtoLibrary\DtoLibrary.csproj">
+      <Project>{3537B75F-1084-4A85-8435-CFFC2052432F}</Project>
+      <Name>DtoLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GusLibrary\GusLibrary.csproj">
+      <Project>{6C7B3A35-0FA0-4A50-B383-8629FE36A0A8}</Project>
+      <Name>GusLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MfLibrary\MfLibrary.csproj">
+      <Project>{85FE865C-F946-4835-A394-AC957C813BD7}</Project>
+      <Name>MfLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Projekt_Inzynierski\Projekt_Inzynierski.csproj">
       <Project>{0b6068f4-4fbb-4d50-a298-ffb9a9d449a7}</Project>
       <Name>Projekt_Inzynierski</Name>

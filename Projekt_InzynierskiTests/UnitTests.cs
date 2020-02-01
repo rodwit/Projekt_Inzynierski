@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GusLibrary;
+using MfLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Projekt_Inzynierski;
 using System;
 using System.Collections.Generic;
@@ -72,12 +74,29 @@ namespace Projekt_InzynierskiTests
 		}
 
 		[TestMethod]
-		public void ExecScalar_CorrectQuery_Zero()
+		public void ExecScalar_CorrectQuery_One()
 		{
-
+			BaseConnection.openConnection();
+			var result = (int)BaseConnection.execScalar("SELECT Id FROM Contractors WHERE Id = 1;");
+			BaseConnection.closeConnection();
+			Assert.IsTrue(result == 1, "Result should be number one");
+		}
+		
+		[TestMethod]
+		public void ExecReader_CorrectQuery_TwoValues()
+		{
+			BaseConnection.openConnection();
+			var reader = BaseConnection.execReader("SELECT Id, Name FROM Contractors WHERE Id = 1;");
+			while (reader.Read())
+			{
+				Assert.IsTrue(reader.GetInt32(0) == 1);
+				Assert.IsTrue(reader.GetString(1) == "Mirek Inc");
+			}
+			BaseConnection.closeConnection();		
 		}
 
-		[TestMethod]
+
+	[TestMethod]
 		public void GenerateInvoice_InitializeObject_ReturnInvoiceObject()
 		{
 			var idUser = 1;
@@ -158,7 +177,20 @@ namespace Projekt_InzynierskiTests
 			}			
 		}
 
+		[TestMethod]
+		public void DataSearchSubjects_NotValidNipNumber_SoapEmptyObject()
+		{
+			var result = GusApiHelper.DataSearchSubjects("1111111111");
+			Assert.IsNull(result.Miejscowosc);
+			Assert.IsNull(result.Gmina);
+			Assert.AreEqual(0, result.Id);
+		}
 
-
+		[TestMethod]
+		public void SearchNip_NotValidNipNumber_RestNullObject()
+		{
+			var result = MfApiHelper.SearchNip("1111111111");
+			Assert.IsNull(result);
+		}		
 	}
 }
